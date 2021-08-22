@@ -11,6 +11,9 @@
       </div>
     </ion-content>
     <ion-content v-else :fullscreen="true">
+      <ion-refresher slot="fixed" @ionRefresh="getRandomCocktail()">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
       <ion-card>
         <img :src="randomCocktail.strDrinkThumb" :alt="randomCocktail.strDrinkThumb">
         <ion-card-header>
@@ -38,11 +41,11 @@
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonSpinner, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList, IonListHeader, IonItem, IonLabel } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonSpinner, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList, IonListHeader, IonItem, IonLabel, IonRefresher, IonRefresherContent } from '@ionic/vue';
 import axios from 'axios';
 export default  {
   name: 'Tab1',
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonSpinner, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList, IonListHeader, IonItem, IonLabel },
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonSpinner, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList, IonListHeader, IonItem, IonLabel, IonRefresher, IonRefresherContent },
   data() {
     return {
       isLoading: true,
@@ -51,6 +54,7 @@ export default  {
   },
   methods:{
     getRandomCocktail(){
+      this.isLoading = true
       const ret = axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php');
       ret.then(({data}) => {
         this.randomCocktail = data.drinks[0]
