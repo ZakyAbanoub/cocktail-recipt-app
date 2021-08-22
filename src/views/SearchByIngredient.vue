@@ -10,7 +10,7 @@
     </ion-content>
     <ion-content :fullscreen="true" v-else>
       <ion-list>
-        <ion-item v-for="ingredient in ingredientsList" :key="ingredient.strIngredient1" @click="router.push(`drinks-by-igredient/${ingredient.strIngredient1}`)">
+        <ion-item v-for="ingredient in ingredientsList" :key="ingredient.strIngredient1" @click=" $router.push(`/drinks-by-ingredient/${ingredient.strIngredient1}`)">
           <ion-avatar slot="start">
             <img :src="ingredientThumb(ingredient.strIngredient1)" />
           </ion-avatar>
@@ -28,7 +28,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar, IonLab
 import axios from 'axios'
 
 export default  {
-  name: 'Tab2',
+  name: 'SearchByIngredient',
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonAvatar, IonLabel, IonList, IonItem },
   data() {
     return {
@@ -55,6 +55,9 @@ export default  {
   },
   created(){
     this.searchIngredients()
+  },
+  mounted(){
+    console.log(this.$route)
   }
 }
 </script>

@@ -3,31 +3,41 @@ import Tabs from '../views/Tabs.vue'
 
 const routes = [{
         path: '/',
-        redirect: '/tabs/tab1'
+        redirect: '/tabs/lucky-cocktail'
     },
     {
         path: '/tabs/',
         component: Tabs,
         children: [{
                 path: '',
-                redirect: '/tabs/tab1'
+                redirect: '/tabs/lucky-cocktail'
             },
             {
-                path: 'tab1',
+                path: 'lucky-cocktail',
                 component: () =>
                     import ('@/views/RandomCocktail.vue')
             },
             {
-                path: 'tab2',
+                path: 'by-ingredients',
                 component: () =>
                     import ('@/views/SearchByIngredient.vue')
             },
             {
-                path: 'tab3',
+                path: 'search-drink',
                 component: () =>
-                    import ('@/views/Tab3.vue')
+                    import ('@/views/SearchDrink.vue')
             }
         ]
+    },
+    {
+        path: '/drinks-by-ingredient/:ingredient',
+        component: () =>
+            import ('@/views/DrinksByIngredient.vue')
+    },
+    {
+        path: '/drink/:drinkId',
+        component: () =>
+            import ('@/views/DrinkDetails.vue')
     }
 ]
 

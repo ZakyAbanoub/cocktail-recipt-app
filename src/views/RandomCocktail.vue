@@ -12,38 +12,19 @@
       <ion-refresher slot="fixed" @ionRefresh="getRandomCocktail()">
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
-      <ion-card>
-        <img :src="randomCocktail.strDrinkThumb" :alt="randomCocktail.strDrinkThumb">
-        <ion-card-header>
-          <ion-card-subtitle>{{ randomCocktail.strCategory }}</ion-card-subtitle>
-          <ion-card-title>{{ randomCocktail.strDrink }}</ion-card-title>
-        </ion-card-header>
 
-        <ion-card-content>
-          {{ randomCocktail.strInstructions }}
-        </ion-card-content>
-        <ion-list>
-        <ion-list-header>Ingredients: </ion-list-header>
-
-          <ion-item v-for="n in 15" :key="n" v-show="randomCocktail[`strIngredient${n}`]">
-            <ion-label>
-            <span v-if="randomCocktail[`strMeasure${n}`]"> {{randomCocktail[`strMeasure${n}`]}} </span>
-            <span> {{randomCocktail[`strIngredient${n}`]}} </span>
-            </ion-label>
-          </ion-item>
-
-        </ion-list>
-      </ion-card>
+    <base-card :drink="randomCocktail"></base-card>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList, IonListHeader, IonItem, IonLabel, IonRefresher, IonRefresherContent } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonRefresher, IonRefresherContent } from '@ionic/vue';
 import axios from 'axios';
+import baseCard from '@/components/baseCard.vue'
 export default  {
-  name: 'Tab1',
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList, IonListHeader, IonItem, IonLabel, IonRefresher, IonRefresherContent },
+  name: 'LuckyCocktail',
+  components: { baseCard, IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonRefresher, IonRefresherContent },
   data() {
     return {
       isLoading: false,
