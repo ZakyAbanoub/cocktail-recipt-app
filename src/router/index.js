@@ -20,7 +20,7 @@ const routes = [{
             {
                 path: 'tab2',
                 component: () =>
-                    import ('@/views/Tab2.vue')
+                    import ('@/views/SearchByIngredient.vue')
             },
             {
                 path: 'tab3',

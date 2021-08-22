@@ -9,8 +9,8 @@
         </ion-tab-button>
           
         <ion-tab-button tab="tab2" href="/tabs/tab2">
-          <ion-icon :icon="ellipse" />
-          <ion-label>Tab 2</ion-label>
+          <ion-icon :icon="beerOutline" />
+          <ion-label>By Ingredient</ion-label>
         </ion-tab-button>
         
         <ion-tab-button tab="tab3" href="/tabs/tab3">
@@ -24,15 +24,15 @@
 
 <script>
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { ellipse, square, repeatOutline } from 'ionicons/icons';
+import { square, beerOutline, repeatOutline } from 'ionicons/icons';
 
 export default {
   name: 'Tabs',
   components: { IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet },
   data() {
     return {
-      ellipse,
       square,
+      beerOutline,
       repeatOutline
     }
   },

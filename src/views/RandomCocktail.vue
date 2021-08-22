@@ -2,13 +2,11 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Your Lucky Drink </ion-title>
+        <ion-title> Your Lucky Drink </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content v-if="isLoading">
-      <div class="loading-content">
-      <ion-spinner name="dots"></ion-spinner>
-      </div>
+      <base-spinner></base-spinner>
     </ion-content>
     <ion-content v-else :fullscreen="true">
       <ion-refresher slot="fixed" @ionRefresh="getRandomCocktail()">
@@ -27,10 +25,10 @@
         <ion-list>
         <ion-list-header>Ingredients: </ion-list-header>
 
-          <ion-item v-for="n in 15" :key="n" v-show="randomCocktail['strIngredient' + n]">
+          <ion-item v-for="n in 15" :key="n" v-show="randomCocktail[`strIngredient${n}`]">
             <ion-label>
-            <span v-if="randomCocktail['strMeasure' + n]"> {{ `${randomCocktail['strMeasure' + n]} ` }} </span>
-            <span> {{ `${randomCocktail['strIngredient' + n]}` }} </span>
+            <span v-if="randomCocktail[`strMeasure${n}`]"> {{randomCocktail[`strMeasure${n}`]}} </span>
+            <span> {{randomCocktail[`strIngredient${n}`]}} </span>
             </ion-label>
           </ion-item>
 
@@ -41,14 +39,14 @@
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonSpinner, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList, IonListHeader, IonItem, IonLabel, IonRefresher, IonRefresherContent } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList, IonListHeader, IonItem, IonLabel, IonRefresher, IonRefresherContent } from '@ionic/vue';
 import axios from 'axios';
 export default  {
   name: 'Tab1',
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonSpinner, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList, IonListHeader, IonItem, IonLabel, IonRefresher, IonRefresherContent },
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList, IonListHeader, IonItem, IonLabel, IonRefresher, IonRefresherContent },
   data() {
     return {
-      isLoading: true,
+      isLoading: false,
       randomCocktail: null
     }
   },
@@ -67,13 +65,3 @@ export default  {
   }
 }
 </script>
-
-<style>
-.loading-content{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-}
-</style>
